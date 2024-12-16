@@ -1,5 +1,4 @@
 import type { LoaderFunction } from "@remix-run/cloudflare";
-import { json } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import type { services } from '@prisma/client'
 import {getPrismaClient} from "~/prisma";

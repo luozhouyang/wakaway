@@ -1,9 +1,9 @@
-import { PrismaClient } from '@prisma/client'
 import { PrismaD1 } from '@prisma/adapter-d1'
+import { PrismaClient } from '@prisma/client'
 
 // Declare a global variable to hold the Prisma client
 declare global {
-  var __prisma: PrismaClient | undefined
+  var prisma: PrismaClient | undefined
 }
 
 // Function to create a new Prisma client
@@ -27,9 +27,10 @@ export function getPrismaClient(env: { DB: D1Database }) {
   }
 
   // In production, use a global singleton
-  if (!global.__prisma) {
-    global.__prisma = createPrismaClient(env)
-  }
+  //   if (!global.prisma) {
+  //     global.prisma = createPrismaClient(env)
+  //   }
 
-  return global.__prisma
+  //   return global.prisma
+  return createPrismaClient(env);
 }
