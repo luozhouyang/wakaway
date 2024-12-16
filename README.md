@@ -25,7 +25,7 @@ Documentation:
 
 Step 1: Create migrate:
 ```bash
-npx wrangler d1 migrations create wakaway ${message}
+npx wrangler d1 migrations create wakaway_dev ${message}
 ```
 
 Step 2: Create a migration:
@@ -33,21 +33,21 @@ Step 2: Create a migration:
 For the first migrate diff:
 
 ```bash
-npx prisma migrate diff --from-empty --to-schema-datamodel ./prisma/schema.prisma --script --output mi
+npx prisma migrate diff --from-empty --to-schema-datamodel ./prisma/schema.prisma --script --output migrations/0001_${messsage}.sql
 ```
 
 For any further migrations：
 
 ```bash
-npx prisma migrate diff --from-local-d1 --to-schema-datamodel ./prisma/schema.prisma --script --output
+npx prisma migrate diff --from-local-d1 --to-schema-datamodel ./prisma/schema.prisma --script --output migrations/${num}_${messsage}.sql
 ```
 
 Step 3: Apply the migration:
 ```bash
 # apply to local db
-npx wrangler d1 migrations apply wakaway --local
+npx wrangler d1 migrations apply wakaway_dev --local
 # apply to remote d1 db
-npx wrangler d1 migrations apply wakaway --remote
+npx wrangler d1 migrations apply wakaway_dev --remote
 ```
 
 Step 4: generate prisma client:

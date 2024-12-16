@@ -6,3 +6,8 @@ compatibility_date = "2024-05-12"
 binding = "DB"
 database_id = "bb6b5914-fcf2-44f4-b001-30eadc495bce"
 database_name = "wakaway"
+
+[[d1_databases]]
+binding = "DB_DEV"
+database_id = "f7968e53-9d15-49d3-a18f-3a3f249cc54c"
+database_name = "wakaway_dev"

@@ -8,6 +8,7 @@ import { type PlatformProxy } from "wrangler";
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface Env {
   DB: D1Database;
+  DB_DEV: D1Database;
 }
 
 type Cloudflare = Omit<PlatformProxy<Env>, "dispose">;
