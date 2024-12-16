@@ -18,6 +18,43 @@ npm run build
 npm run start
 ```
 
+### prisma migrations
+
+Documentation: 
+* [prisma/cloudflare-d1](https://www.prisma.io/docs/orm/overview/databases/cloudflare-d1)
+
+Step 1: Create migrate:
+```bash
+npx wrangler d1 migrations create wakaway ${message}
+```
+
+Step 2: Create a migration:
+
+For the first migrate diff:
+
+```bash
+npx prisma migrate diff --from-empty --to-schema-datamodel ./prisma/schema.prisma --script --output mi
+```
+
+For any further migrations：
+
+```bash
+npx prisma migrate diff --from-local-d1 --to-schema-datamodel ./prisma/schema.prisma --script --output
+```
+
+Step 3: Apply the migration:
+```bash
+# apply to local db
+npx wrangler d1 migrations apply wakaway --local
+# apply to remote d1 db
+npx wrangler d1 migrations apply wakaway --remote
+```
+
+Step 4: generate prisma client:
+```bash
+npx prisma generate
+```
+
 ## Typegen
 
 Generate types for your Cloudflare bindings in `wrangler.toml`:

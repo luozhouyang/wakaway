@@ -1,6 +1,6 @@
 import type { LoaderFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
-import type { services } from '@prisma/client'
+import type { Service } from '@prisma/client'
 import {getPrismaClient} from "~/prisma";
 
 
@@ -8,11 +8,11 @@ import {getPrismaClient} from "~/prisma";
 export const loader: LoaderFunction = async ({context, params}) => {
     const { env, cf, ctx } = context.cloudflare;
     const prisma = getPrismaClient(env);
-    const services = await prisma.services.findMany();
+    const services = await prisma.service.findMany();
     return Response.json({services});
 };
 export default function Index() {
-    const {services} = useLoaderData<{services: services[]}>();
+    const {services} = useLoaderData<{services: Service[]}>();
     return (
         <div>
             <div>Here are all the services</div>
