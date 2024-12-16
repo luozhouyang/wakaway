@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model services {
+  id String @id @default(uuid())
+  name String
+  retries Int @default(5)
+  protocol String @default("http")
+  host String
+  port Int @default(80)
+  path String @default("")
+  connectTimeout Int @default(6000)
+  readTimeout Int @default(6000)
+  writeTimeout Int @default(6000)
+  tags String @default("[]")
+  enabled Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

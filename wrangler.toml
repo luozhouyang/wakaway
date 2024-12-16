@@ -1,0 +1,7 @@
+name = "wakaway"
+pages_build_output_dir = "./build"
+
+[[d1_databases]]
+binding = "DB"
+database_id = "bb6b5914-fcf2-44f4-b001-30eadc495bce"
+database_name = "wakaway"
