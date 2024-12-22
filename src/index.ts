@@ -1,26 +1,11 @@
 import { Hono } from 'hono'
-import { basicAuth } from 'hono/basic-auth'
-
-
-type Bindings = {
-  WAKAWAY: D1Database
-  USERNAME: string
-  PASSWORD: string
-}
+import { Bindings } from './env'
+import admin from './apis/admin'
+import proxy from './apis/proxy'
 
 const app = new Hono<{ Bindings: Bindings }>()
 
-
-app.use('/*', async (c, next) => {
-  const auth = basicAuth({
-    username: c.env.USERNAME,
-    password: c.env.PASSWORD
-  });
-  return await auth(c, next);
-})
-
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+app.route('/admin', admin)
+app.route('/', proxy)
 
 export default app
